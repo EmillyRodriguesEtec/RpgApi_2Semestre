@@ -21,6 +21,7 @@ namespace RpgApi.Models
 
         [NotMapped]
         public string PasswordString { get; set; }
-        public List<Personagem> Personagens { get; set;}
+        public List<Personagem> Personagens { get; set; }
+
     }
 }

@@ -87,7 +87,11 @@ namespace RpgApi.Controllers
             try{
                 Usuario usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
+                DateTime dataAcessoAtual = DateTime.Now;
+                usuario.DataAcesso = dataAcessoAtual;
                 
+                await _context.SaveChangesAsync();
+
                 if (usuario == null)
                 {
                     throw new System.Exception("Usuário não encontrado.");
@@ -101,6 +105,30 @@ namespace RpgApi.Controllers
                 {
                     return Ok(usuario);
                 }
+            }
+            catch(System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
+
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenha(Usuario credenciais)
+        {
+            try
+            {
+                Usuario usuarioAlterado = await _context.Usuarios
+                    .FirstOrDefaultAsync(user => user.Username.ToLower().Equals(credenciais.Username.ToLower()));
+
+                Criptografia.CriarPasswordHash(credenciais.PasswordString, out byte[] hash, out byte[] salt);
+                credenciais.PasswordString = string.Empty;
+                credenciais.PasswordHash = hash;
+                credenciais.PasswordSalt = salt;
+                _context.Usuarios.Update(usuarioAlterado);
+                int linhasAfetadas = await _context.SaveChangesAsync();
+
+                return Ok(linhasAfetadas);
             }
             catch(System.Exception ex)
             {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using RpgApi.Data;
 using RpgApi.Models; 
 using Microsoft.EntityFrameworkCore;
-
+using System.Collections.Generic;
 
 namespace RpgApi.Controllers
 {
@@ -19,13 +19,14 @@ namespace RpgApi.Controllers
             _context = context;
         }
 
-         [HttpGet("{id}")] //Buscar pelo id
+        [HttpGet("{id}")] //Buscar pelo id
         public async Task<IActionResult> GetSingle(int id)
         {
             try
             {
                 Personagem p = await _context.Personagens
                 .Include(ar => ar.Arma)
+                .Include(user => user.Usuario)
                 .Include(ph => ph.PersonagemHabilidades)
                     .ThenInclude(h => h.Habilidade)
                 .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
