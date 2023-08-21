@@ -3789,23 +3789,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Emilly Rodrigues\\.nuget\\packages\\": {},
+    "C:\\Users\\etechas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
+      "projectUniqueName": "a:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
       "projectName": "RpgApi",
-      "projectPath": "D:\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
-      "packagesPath": "C:\\Users\\Emilly Rodrigues\\.nuget\\packages\\",
-      "outputPath": "D:\\PAM\\RpgApi_2Semestre\\obj\\",
+      "projectPath": "a:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
+      "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
+      "outputPath": "a:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Emilly Rodrigues\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\etechas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3815,7 +3815,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.305\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3876,7 +3876,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
       }
     }
   }

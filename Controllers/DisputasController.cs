@@ -18,12 +18,28 @@ namespace RpgApi.Controllers
             _context = context;
         }
 
+        [HttpDelete("ApagarDisputas")]
+        public async Task<IActionResult> DeleteAsync()
+        {
+            try
+            {
+                List<Disputa> disputas = await _context.Disputas.ToListAsync();
+                _context.Disputas.RemoveRange(disputas);
+                await _context.SaveChangesAsync();
+                return Ok("Disputas apagadas");
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+        }
         [HttpGet("Listar")]
         public async Task<IActionResult> ListarAsync()
         {
             try
             {
-                List<Disputa> disputas = await _context.Disputas.ToListAsync();                
+                List<Disputa> disputas =
+                await _context.Disputas.ToListAsync();
                 return Ok(disputas);
             }
             catch (System.Exception ex)
