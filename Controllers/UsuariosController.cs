@@ -5,6 +5,12 @@ using RpgApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using RpgApi.Models.Utils;
+using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace RpgApi.Controllers
 {
@@ -13,9 +19,11 @@ namespace RpgApi.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly DataContext _context;
-        public UsuariosController(DataContext context)
+        private readonly IConfiguration _configuration;
+        public UsuariosController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("GetUser")]
@@ -89,10 +97,6 @@ namespace RpgApi.Controllers
             {
                 Usuario usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
-                DateTime dataAcessoAtual = DateTime.Now;
-                usuario.DataAcesso = dataAcessoAtual;
-
-                await _context.SaveChangesAsync();
 
                 if (usuario == null)
                 {
@@ -105,6 +109,13 @@ namespace RpgApi.Controllers
                 }
                 else
                 {
+                    usuario.DataAcesso = System.DateTime.Now;
+                    _context.Usuarios.Update(usuario);
+                    await _context.SaveChangesAsync(); //Confirma a alteração no banco
+                    
+                    usuario.PasswordHash = null;
+                    usuario.PasswordSalt = null;
+                    usuario.Token = CriarToken(usuario);
                     return Ok(usuario);
                 }
             }
@@ -213,7 +224,7 @@ namespace RpgApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
         //Método para alteração da foto
         [HttpPut("AtualizarFoto")]
         public async Task<IActionResult> AtualizarFoto(Usuario u)
@@ -233,6 +244,27 @@ namespace RpgApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private string CriarToken(Usuario usuario)
+        {
+            List<Claim> claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+            new Claim(ClaimTypes.Name, usuario.Username)
+        };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(_configuration.GetSection("ConfiguracaoToken:Chave").Value));
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
     }

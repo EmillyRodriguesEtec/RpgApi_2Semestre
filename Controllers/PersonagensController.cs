@@ -3,6 +3,7 @@ using RpgApi.Data;
 using RpgApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace RpgApi.Controllers
 {
@@ -12,11 +13,12 @@ namespace RpgApi.Controllers
     {
         //Programação de toda a classe ficará aqui abaixo
         private readonly DataContext _context; //Declaração do atributo
-
-        public PersonagensController(DataContext context)
+        private readonly IConfiguration _configuration;
+        public PersonagensController(DataContext context, IConfiguration configuration)
         {
             //Inicialização do atributo a partir de um parâmetro          
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpGet("{id}")] //Buscar pelo id
