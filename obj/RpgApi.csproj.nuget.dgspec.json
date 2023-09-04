@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "A:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj": {}
+    "A:\\Emilly_R_Henrique_N\\PAM\\RpgApi_2Semestre\\RpgApi.csproj": {}
   },
   "projects": {
-    "A:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj": {
+    "A:\\Emilly_R_Henrique_N\\PAM\\RpgApi_2Semestre\\RpgApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
+        "projectUniqueName": "A:\\Emilly_R_Henrique_N\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
         "projectName": "RpgApi",
-        "projectPath": "A:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
+        "projectPath": "A:\\Emilly_R_Henrique_N\\PAM\\RpgApi_2Semestre\\RpgApi.csproj",
         "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
-        "outputPath": "A:\\EmillyR_HenriqueN\\PAM\\RpgApi_2Semestre\\obj\\",
+        "outputPath": "A:\\Emilly_R_Henrique_N\\PAM\\RpgApi_2Semestre\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

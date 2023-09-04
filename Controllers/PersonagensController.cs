@@ -4,9 +4,13 @@ using RpgApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Linq;
 
 namespace RpgApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[Controller]")]
     public class PersonagensController : ControllerBase
@@ -201,14 +205,33 @@ namespace RpgApi.Controllers
             }
         }
 
-        [HttpGet("GetByUser/{userId}")]
+       /* [HttpGet("GetByUser/{userId}")]
         public async Task<IActionResult> GetByUserAsync(int userId)
         {
             try
             {
+                
                 List<Personagem> lista = await _context.Personagens
                 .Where(u => u.Usuario.Id == userId)
                 .ToListAsync();
+                return Ok(lista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }*/
+
+        [HttpGet("GetByUser")]
+        public async Task<IActionResult> GetByUserAsync()
+        {
+            try
+            {
+                int id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+                List<Personagem> lista = await _context.Personagens
+                .Where(u => u.Usuario.Id == id).ToListAsync();
+                
                 return Ok(lista);
             }
             catch (System.Exception ex)
