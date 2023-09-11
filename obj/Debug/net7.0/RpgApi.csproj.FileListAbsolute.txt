@@ -782,3 +782,4 @@ A:\Emilly_R_Henrique_N\PAM\RpgApi_2Semestre\obj\Debug\net7.0\refint\RpgApi.dll
 A:\Emilly_R_Henrique_N\PAM\RpgApi_2Semestre\obj\Debug\net7.0\RpgApi.pdb
 A:\Emilly_R_Henrique_N\PAM\RpgApi_2Semestre\obj\Debug\net7.0\RpgApi.genruntimeconfig.cache
 A:\Emilly_R_Henrique_N\PAM\RpgApi_2Semestre\obj\Debug\net7.0\ref\RpgApi.dll
+D:\PAM\RpgApi_2Semestre\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
